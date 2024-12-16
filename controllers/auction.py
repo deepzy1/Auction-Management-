@@ -1,74 +1,62 @@
 from odoo import http
 from odoo.http import request
+import logging
 from datetime import datetime
 
-class AuctionWebController(http.Controller):
+_logger = logging.getLogger(__name__)
 
-    @http.route('/auction/list', auth='public', website=True)
-    def auction_listing(self, **kwargs):
-        # Fetch all live auctions
-        auctions = request.env['new.auction'].search([
-            ('status', '=', 'running'),
-            ('end_date', '>=', datetime.now())
+class AuctionController(http.Controller):
+
+    @http.route('/auction/list', type='http', auth='public', website=True)
+    def auction_list(self):
+        auctions = request.env['new.auction'].sudo().search([
+            ('status', '=', 'running'), ('end_date', '>=', datetime.now())
         ])
+        success_message = request.params.get('success_message', False)
+        error_message = request.params.get('error', False)
         return request.render('auction_management.auction_list_template', {
-            'auctions': auctions
+            'auctions': auctions,
+            'success_message': success_message,
+            'error_message': error_message,
         })
 
-    # @http.route('/auction/<int:auction_id>/place_bid', type='json', auth='public', methods=['POST'])
-    # def place_bid(self, auction_id, **kwargs):
-    #     auction = request.env['new.auction'].sudo().browse(auction_id)
-    #     bid_amount = float(kwargs.get('bid_amount'))
-
-    #     if not auction.exists():
-    #         return {'error': 'Auction not found'}
-
-    #     if bid_amount <= auction.highest_bid:
-    #         return {'error': 'Bid amount must be higher than the current highest bid'}
-
-    #     # Create the bid log
-    #     user_id = request.env.user.id
-    #     auction.env['bid.logs'].create({
-    #         'auction_id': auction.id,
-    #         'user_id': user_id,
-    #         'bid_amount': bid_amount,
-    #     })
-
-    #     # Update the highest bid
-    #     auction.highest_bid = bid_amount
-
-    #     return {'new_highest_bid': auction.highest_bid}
-
-    @http.route('/auction/place_bid', type='json', auth='public', methods=['POST'], csrf=False)
-    def place_bid(self, auction_id, bid_amount):
-        auction = request.env['new.auction'].sudo().browse(auction_id)
-        
-        if not auction:
-            return {'success': False, 'error_message': 'Auction not found'}
-
-        # Convert bid_amount to float if passed as string
+    @http.route('/auction/bid', type='http', auth='public', methods=['POST'], website=True, csrf=False)
+    def place_bid(self, **kwargs):
         try:
-            bid_amount = float(bid_amount)
-        except ValueError:
-            return {'success': False, 'error_message': 'Invalid bid amount'}
+            # Fetch the logged-in auction user from the session
+            auction_user_id = request.session.get('auction_user_id')
+            if not auction_user_id:
+                return request.redirect('/auction/login?error=Please log in to place a bid.')
 
-        # Check if the bid is greater than the current highest bid
-        if bid_amount <= auction.highest_bid:
-            return {'success': False, 'error_message': 'Bid amount must be higher than the current highest bid'}
+            auction_user = request.env['auction.user'].sudo().browse(auction_user_id)
+            if not auction_user.exists():
+                return request.redirect('/auction/login?error=User not found.')
 
-        # Update the auction's highest bid
-        auction.write({'highest_bid': bid_amount})
+            # Fetch auction details
+            auction_id = int(kwargs.get('auction_id'))
+            bid_amount = float(kwargs.get('bid_amount'))
+            auction = request.env['new.auction'].sudo().browse(auction_id)
 
-        # Log the bid in bid.logs model
-        user_id = request.env.user.id  # Get the current user ID
-        request.env['bid.logs'].sudo().create({
-            'auction_id': auction.id,
-            'user_id': user_id,
-            'bid_amount': bid_amount,
-        })
+            if not auction.exists():
+                return request.redirect(f'/auction/list?error=Auction not found.')
 
-        # Return the new highest bid to the client-side to update the UI
-        return {
-            'success': True,
-            'new_highest_bid': bid_amount
-        }
+            # Validate the bid amount
+            current_highest_bid = auction.highest_bid if auction.highest_bid else auction.initial_price
+            if bid_amount <= current_highest_bid:
+                return request.redirect(f'/auction/list?error=Bid must be higher than the current highest bid.')
+
+            # Log the bid
+            request.env['bid.logs'].sudo().create({
+                'user_id': auction_user.id,  # Store the custom auction user
+                'auction_id': auction_id,
+                'bid_amount': bid_amount,
+            })
+
+            # Update the highest bid in the auction
+            auction.sudo().write({'highest_bid': bid_amount})
+
+            return request.redirect(f'/auction/list?success_message=Your bid has been placed successfully.')
+
+        except Exception as e:
+            _logger.error(f"Error placing bid: {e}")
+            return request.redirect(f'/auction/list?error=Internal server error. Please try again later.')

@@ -1,6 +1,6 @@
 from odoo import models, api, fields
 from odoo.exceptions import ValidationError
-from datetime import  date,datetime
+from datetime import date, datetime
 import os
 
 import logging
@@ -18,7 +18,7 @@ class BidRules(models.Model):
     to_price = fields.Float()
     increment_by = fields.Float()
 
-    minimum_increment=fields.Float(string="Increment amount")
+    minimum_increment = fields.Float(string="Increment amount")
 
     @api.model
     def create(self, vals):
@@ -41,21 +41,18 @@ class BidRules(models.Model):
         return super(BidRules, self).write(vals)
 
 
-
-
 class BidLogs(models.Model):
     _name = "bid.logs"
     _description = "Captures all the bidding information"
-    _order="bid_amount desc"
+    _order = "bid_amount desc"
 
-    user_id = fields.Many2one('res.users', string="Bidder", required=True)
+    user_id = fields.Many2one('auction.user', string="Bidder", required=True)
     auction_id = fields.Many2one('new.auction', string="Auction")
     property_id = fields.Many2one('new.property', string="Property", related="auction_id.auction_property", store=True)
     bid_amount = fields.Float(string="Bid Amount", required=True)
     bid_time = fields.Datetime(string="Bid Time", default=lambda self: fields.Datetime.now())
     is_highest = fields.Boolean(string="Is Highest Bid", default=False)
-    highest_bid=fields.Float(string="Highest Bid", related='auction_id.highest_bid', store=True)
-
+    highest_bid = fields.Float(string="Highest Bid", related='auction_id.highest_bid', store=True)
 
     @api.model
     def create(self, vals):
@@ -74,7 +71,6 @@ class BidLogs(models.Model):
             auction.write({'highest_bid': bid.bid_amount})
 
         return bid
-        
 
     def save_log_to_file(self, log):
         """Save log details to a designated file."""
@@ -90,7 +86,6 @@ class BidLogs(models.Model):
                            f"Bid: {log.bid_amount}\n")
 
         return log_file_path
-
 
 
 

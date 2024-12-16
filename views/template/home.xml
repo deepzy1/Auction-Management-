@@ -14,8 +14,9 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/home">Home</a>
                     </li>
@@ -23,13 +24,47 @@
                         <a class="nav-link" href="/auction/register">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/auction/login">Login</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/auction/list">Auctions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/properties">Properties</a>
+                    </li>
+                    <!--                    <li class="nav-item">-->
+                    <!--                        <a class="nav-link" href="/auction/profile">Profile</a>-->
+                    <!--                    </li>-->
+
+                </ul>
+
+<!--                                <div class="search-container">-->
+<!--                                    <input type="text" name="query" placeholder="Search for Auction" class="search-input"/>-->
+<!--                                    <button type="submit" class="btn btn-outline-dark btn-lg">Search</button>-->
+<!--                                </div>-->
+
+
+                <!-- Profile Dropdown -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center"
+                           href="#"
+                           id="profileDropdown"
+                           role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            <!-- Profile Image -->
+                            <img src="/auction_management/static/src/img/user.png"
+                                 alt="Profile"
+                                 class="rounded-circle"
+                                 style="width: 32px; height: 32px; object-fit: cover; margin-right: 8px;"/>
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="/auction/login">Login</a>
+                            <a class="dropdown-item" href="/auction/profile">Profile</a>
+                            <!--                            <a class="dropdown-item" href="/profile">Profile</a>-->
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/auction/logout">Log out</a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -41,23 +76,52 @@
             <div class="container-fluid hero-section">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <h1 class="display-4">Discover        Auctions</h1>
+                        <h1 class="display-4">Discover Auctions</h1>
                         <p class="lead">Participate in live property auctions from the comfort of your home.</p>
                         <a href="/auction/register" class="btn btn-primary btn-lg">Get Started</a>
                     </div>
                     <div class="col-md-6">
                         <!-- Hero Image Placeholder -->
-                        <!-- Uncomment and update with the image path if necessary -->
-                        <!-- <img src="/auction_management/static/src/img/auction-hero.jpg" alt="Auction Hero" class="img-fluid rounded shadow-lg"/> -->
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- Featured Auctions Section -->
-        <div class="container mt-5">
+        <!-- Custom CSS -->
+        <style>
+            .navbar-nav .dropdown-menu {
+            right: 0;
+            left: auto;
+            }
+            .navbar-nav .dropdown-item {
+            font-size: 14px;
+            padding: 10px 20px;
+            }
+            .rounded-circle {
+            border: 1px solid #ddd;
+            }
+        </style>
+
+        <!-- JavaScript for Dropdown -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const dropdownToggle = document.querySelector("#profileDropdown");
+            const dropdownMenu = dropdownToggle.nextElementSibling;
+
+            dropdownToggle.addEventListener("click", function (e) {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle("show");
+            });
+
+            window.addEventListener("click", function () {
+            dropdownMenu.classList.remove("show");
+            });
+            });
+        </script>
+
+        <div class="container-box mt-5">
             <h2 class="text-center mb-4">Featured Auctions</h2>
-            <div class="row">
+            <div class="row mt-4">
                 <div t-foreach="featured_auctions" t-as="auction" class="col-md-4 mb-4">
                     <div class="card h-100 shadow-sm">
                         <img t-att-src="auction.image_url" class="card-img-top" t-att-alt="auction.name"/>
@@ -65,9 +129,9 @@
                             <h5 class="card-title">
                                 <t t-esc="auction.name"/>
                             </h5>
-                            <p class="card-text">
+                            <!-- <p class="card-text">
                                 <t t-esc="auction.description"/>
-                            </p>
+                            </p> -->
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-muted">Starting bid: $
                                     <t t-esc="auction.starting_bid"/>
@@ -82,7 +146,6 @@
             </div>
         </div>
 
-        <!-- How It Works Section -->
         <div class="container-fluid bg-light py-5 mt-5">
             <div class="container">
                 <h2 class="text-center mb-4">How It Works</h2>
@@ -105,6 +168,5 @@
                 </div>
             </div>
         </div>
-
     </template>
 </odoo>

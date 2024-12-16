@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <template id="user_profile_template" name="User Profile">
+
+        <t t-call-assets="web.assets_frontend"/>
+        <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/auction.css"/>
+
+        <t t-set="title">Profile - Auction Management System</t>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <h2 class="card-title text-center mb-4">User Profile</h2>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-end fw-bold">Full Name:</div>
+                                <div class="col-md-8">
+                                    <span t-esc="user.name"/>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-end fw-bold">Email:</div>
+                                <div class="col-md-8">
+                                    <span t-esc="user.email"/>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-end fw-bold">Phone:</div>
+                                <div class="col-md-8">
+                                    <span t-esc="user.phone or 'N/A'"/>
+                                </div>
+                            </div>
+<!--                            <div class="row mb-3">-->
+<!--                                <div class="col-md-4 text-end fw-bold">Address:</div>-->
+<!--                                <div class="col-md-8">-->
+<!--                                    <span t-esc="user.address or 'N/A'"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="text-center mt-4">
+                                <a href="/auction/logout" class="btn btn-danger">Logout</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

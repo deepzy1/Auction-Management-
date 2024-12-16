@@ -14,6 +14,7 @@ class NewUser(models.Model):
     phone = fields.Char(string='Phone')
     address = fields.Text(string='Address')
     active = fields.Boolean(string='Active', default=True)
+    bid_id=fields.Many2one('bid.logs', string="Bid")
 
     _sql_constraints = [
         ('email_unique','unique(email)','The email must be unique.'),
