@@ -2,38 +2,35 @@
 <odoo>
     <template id="login_template" name="Login">
         <t t-call-assets="web.assets_frontend"/>
-
-        <!-- Load your custom CSS -->
-         <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/auction.css"/>
-            <t t-set="title">Login - Auction Management System</t>
-            <div class="container mt-5">
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
-                        <div class="card shadow">
-                            <div class="card-body">
-                                <h2 class="card-title text-center mb-4">Login</h2>
-                                <form action="/auction/login/submit" method="post">
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email" required="1"/>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">Password</label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password" required="1"/>
-                                    </div>
-                                    <div class="d-grid gap-2">
-                                        <button type="submit" class="btn btn-primary">Login</button>
-                                    </div>
-                                </form>
-                                <p class="mt-3 text-center">
-                                    <a href="/auction/register">Don't have an account? Register here.</a>
-                                </p>
-                            </div>
+        <!-- Link Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/auth.css"/>
+        <t t-set="title">Login - Auction Management System</t>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-lg border-0 rounded-3">
+                        <div class="card-body p-5">
+                            <h2 class="text-center mb-4 fw-bold">Login</h2>
+                            <form action="/auction/login/submit" method="post">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email" required="1"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password" required="1"/>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                                </div>
+                            </form>
+                            <p class="mt-4 text-center">
+                                <a href="/auction/register" class="text-decoration-none">Don't have an account? Register here.</a>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-
+        </div>
     </template>
 </odoo>
-

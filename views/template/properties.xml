@@ -2,9 +2,71 @@
     <template id="property_list_template" name="Property List Page">
        <t t-call-assets="web.assets_frontend"/>
 
-        <!-- Load your custom CSS -->
-         <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/animation.css"/>
-<!--         <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/auction.css"/>-->
+        <!-- Link custom CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"/>
+
+        <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/auction.css"/>
+        <script type="text/javascript" src="/auction_management/static/src/js/round.js"></script>
+        <header>
+             <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light1">
+            <a class="navbar-brand" href="/">Auction System</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auction/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auction/list">Auctions</a>
+                    </li>
+                    <li class="nav-item2">
+                        <a class="nav-link" href="/properties">Properties</a>
+                    </li>
+                </ul>
+
+                <!-- Search Bar -->
+                <form class="form-inline d-flex align-items-center">
+                    <input type="text" name="query" placeholder="Search for Auction"
+                           class="form-control custom-search mr-2"/>
+                    <button type="submit" class="btn btn-primary custom-search-btn">
+                        <i class="bi bi-search"></i> <!-- Bootstrap Search Icon -->
+                    </button>
+                </form>
+
+
+                <!-- Profile Dropdown -->
+                <ul class="navbar-nav ml-3">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center"
+                           href="#"
+                           id="profileDropdown"
+                           role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            <img src="/auction_management/static/src/img/user.png"
+                                 alt="Profile"
+                                 class="rounded-circle profile-image"/>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="/auction/login">Login</a>
+                            <a class="dropdown-item" href="/auction/profile">Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/auction/logout">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        </header>
             <t t-set="title">Property Records</t>
             <div class="container py-5">
                 <h2 class="text-center mb-5">Property Records</h2>
