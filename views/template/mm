@@ -1,16 +1,24 @@
-<!-- JavaScript for Dropdown -->
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-            const dropdownToggle = document.querySelector("#profileDropdown");
-            const dropdownMenu = dropdownToggle.nextElementSibling;
+ <!-- Notification Script -->
+        <script type="text/javascript">
+            // Check if success or error message exists in the URL
+            var successMessage = "<t t-esc='request.params.get("success_message", "")'/>";
+            var errorMessage = "<t t-esc='request.params.get("error", "")'/>";
 
-            dropdownToggle.addEventListener("click", function (e) {
-            e.stopPropagation();
-            dropdownMenu.classList.toggle("show");
-            });
+            // Display success notification
+            if (successMessage) {
+            var notification = $('<div class="alert alert-success" role="alert">' + successMessage + '</div>');
+            $('#notification-container').append(notification);
+            setTimeout(function () {
+            notification.fadeOut('slow');
+            }, 1000);
+            }
 
-            window.addEventListener("click", function () {
-            dropdownMenu.classList.remove("show");
-            });
-            });
+            // Display error notification
+            if (errorMessage) {
+            var notification = $('<div class="alert alert-danger" role="alert">' + errorMessage + '</div>');
+            $('#notification-container').append(notification);
+            setTimeout(function () {
+            notification.fadeOut('slow');
+            }, 1000);
+            }
         </script>

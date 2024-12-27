@@ -1,68 +1,43 @@
-from odoo import http
+from odoo import http, fields
 from odoo.http import request
-
+from datetime import datetime
 
 class AuctionUserController(http.Controller):
 
-    # Registration Page
+    # Route to display the registration form
     @http.route('/auction/register', type='http', auth='public', website=True)
     def auction_register(self, **kwargs):
         return request.render('auction_management.register_template', {})
 
-    # Handle Registration Submission
+    # Handle form submission for registration (no OTP needed)
     @http.route('/auction/register/submit', type='http', auth='public', methods=['POST'], website=True, csrf=False)
     def auction_register_submit(self, **kwargs):
         name = kwargs.get('name')
         email = kwargs.get('email')
         password = kwargs.get('password')
         phone = kwargs.get('phone')
-        address = kwargs.get('address')
 
-        # Check if the email already exists
-        existing_user = request.env['auction.user'].sudo().search([('email', '=', email)], limit=1)
-        if existing_user:
+        # Ensure password matches the confirmation password
+        if kwargs.get('password') != kwargs.get('confirm_password'):
+            return request.render('auction_management.register_template', {'error': 'Passwords do not match.'})
+
+        # Check if email already exists
+        if request.env['auction.user'].sudo().search([('email', '=', email)]):
             return request.render('auction_management.register_template', {'error': 'Email already exists.'})
 
-        # Create a new user
+        # Create the user without OTP
         request.env['auction.user'].sudo().create({
             'name': name,
             'email': email,
             'password': password,
-            'phone': phone,
-            'address': address,
+            'phone': phone
         })
+
+        # Redirect to login page after registration
         return request.redirect('/auction/login')
 
-    # Login Page
-    @http.route('/auction/login', type='http', auth='public', website=True)
-    def auction_login(self, **kwargs):
-        return request.render('auction_management.login_template', {})
+        # Home/Profile Page (Logged-In User)
 
-    # Handle Login Submission
-    @http.route('/auction/login/submit', type='http', auth='public', methods=['POST'], website=True, csrf=False)
-    def auction_login_submit(self, **kwargs):
-        email = kwargs.get('email')
-        password = kwargs.get('password')
-
-        # Check user credentials
-        user = request.env['auction.user'].sudo().search([('email', '=', email), ('password', '=', password)], limit=1)
-        if user:
-            # Store user ID in session
-            request.session['auction_user_id'] = user.id
-            return request.redirect('/home')
-        else:
-            return request.render('auction_management.login_template', {'error': 'Invalid email or password.'})
-
-    # Logout Route
-    @http.route('/auction/logout', type='http', auth="public", website=True, csrf=False)
-    def logout_user(self):
-        # Clear the session key for the auction user
-        if 'auction_user_id' in request.session:
-            request.session.pop('auction_user_id', None)
-
-        return request.redirect('/home')
-
-    # Home/Profile Page (Logged-In User)
     @http.route('/auction/profile', type='http', auth='public', website=True)
     def auction_home(self, **kwargs):
         # Get logged-in user ID from session
@@ -77,3 +52,4 @@ class AuctionUserController(http.Controller):
 
         # Render user profile/home page
         return request.render('auction_management.user_profile_template', {'user': user})
+

@@ -1,0 +1,109 @@
+/* Overall page layout */
+.auction-page {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Title styling */
+.auction-title {
+    font-size: 2.5em;
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Auction list container */
+.auction-list {
+    display: flex;
+    flex-wrap: wrap; /* Allows the items to wrap onto new lines */
+    justify-content: space-between; /* Distributes space between items */
+    gap: 20px; /* Space between items */
+}
+
+/* Individual auction item */
+.auction-item {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(25% - 20px); /* 4 items per row with some space between them */
+    box-sizing: border-box; /* Ensures padding is included in the width calculation */
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for auction items */
+.auction-item:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Auction name */
+.auction-name {
+    font-size: 1.6em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Auction status */
+.auction-status,
+.auction-final-bid,
+.auction-end-date {
+    font-size: 1.2em;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* View Details button styling */
+.view-bid-button {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.view-bid-button:hover {
+    background-color: #0056b3;
+}
+
+.view-bid-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+/* No auctions message */
+.no-auctions {
+    text-align: center;
+    font-size: 1.5em;
+    color: #999;
+    margin-top: 40px;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .auction-item {
+        width: calc(33.33% - 20px); /* 3 items per row for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .auction-item {
+        width: calc(50% - 20px); /* 2 items per row for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .auction-item {
+        width: 100%; /* 1 item per row for mobile screens */
+    }
+}
+
+.image-container img{
+    max-height: 200px !important;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}

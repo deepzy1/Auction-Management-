@@ -4,33 +4,47 @@
         <t t-call-assets="web.assets_frontend"/>
         <!-- Link Custom CSS -->
         <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/auth.css"/>
+         <script type="text/javascript" src="/auction_management/static/src/js/login_otp.js"></script>
         <t t-set="title">Login - Auction Management System</t>
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="card shadow-lg border-0 rounded-3">
                         <div class="card-body p-5">
-                            <h2 class="text-center mb-4 fw-bold">Login</h2>
-                            <form action="/auction/login/submit" method="post">
+                            <h2 class="text">Login</h2>
+                            <form id="loginForm" action="/auction/login/submit" method="post">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email" required="1"/>
                                 </div>
-                                <div class="mb-3">
+                                <!-- OTP Section -->
+                                <div class="mb-3" id="otpSection" style="display:none;">
+                                    <label for="otp" class="form-label">Enter OTP</label>
+                                    <input type="text" class="form-control" name="otp" id="otp" placeholder="Enter OTP" required="1" disabled="1"/>
+                                    <button type="button" id="sendOtpButton" class="btn btn-secondary mt-2">Send OTP</button>
+                                    <button type="button" id="verifyOtpButton" class="btn btn-info mt-2" disabled="1">Verify OTP</button>
+                                </div>
+                                <!-- Password Section -->
+                                <div class="mb-3" id="passwordSection">
                                     <label for="password" class="form-label">Password</label>
                                     <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password" required="1"/>
                                 </div>
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                                    <button type="submit" class="text-center" id="loginButton">Login</button>
                                 </div>
                             </form>
                             <p class="mt-4 text-center">
                                 <a href="/auction/register" class="text-decoration-none">Don't have an account? Register here.</a>
+                            </p>
+                            <p class="mt-2 text-center">
+                                <a href="/auction/forgot_password" class="text-decoration-none">Forgot password?</a>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </template>
 </odoo>

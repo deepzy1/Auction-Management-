@@ -1,0 +1,82 @@
+/* General UI Styles */
+.search-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+}
+
+label {
+    font-weight: 600;
+    font-size: 14px; /* Slightly smaller labels */
+    margin-bottom: 5px;
+    color: #333;
+}
+
+select, input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 4px 8px;
+    font-size: 13px; /* Smaller input font */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+button {
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Table Styling */
+.table-container {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Thinner lines */
+    font-size: 12px; /* Small text size */
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 6px; /* Padding for cleaner look */
+    text-align: center;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+.search-buttons{
+    justify-content: space-around;
+}
+.search-button{
+    width: 200px;
+    height: 40px;
+}
+
+.clear-button{
+    width: 200px;
+    height: 40px;
+    background-color: skyblue !important;
+}

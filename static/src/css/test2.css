@@ -1,0 +1,160 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+  
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1, h3 {
+    color: #212529;
+}
+
+/* Navbar */
+
+/* Search Bar */
+.custom-search {
+    width: 250px;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+.custom-search-btn {
+    border-radius: 20px;
+}
+
+/* Profile Dropdown */
+.profile-image {
+    width: 35px;
+    height: 35px;
+    border: 2px solid #ffffff;
+}
+
+/* Auction Details Section */
+.auction-details-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+.auction-details-left, .auction-details-right {
+    flex: 1;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Property Slideshow */
+.property-slideshow {
+    position: relative;
+    max-width: 100%;
+
+    cursor: pointer;
+}
+
+.property-slideshow img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
+
+.property-slideshow img.active {
+    opacity: 1;
+}
+
+/* Navigation Arrows */
+.property-slideshow .prev, .property-slideshow .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border: none;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: block;
+}
+
+.property-slideshow .prev {
+    left: 10px;
+}
+
+.property-slideshow .next {
+    right: 10px;
+}
+
+/* Hide arrows initially */
+.property-slideshow .prev, .property-slideshow .next {
+    display: none;
+}
+
+/* Property Details */
+.property-details {
+    margin-top: 15px;
+}
+.property-details p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Bid Form */
+.bid-input {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+.bid-button {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.bid-button:hover {
+    background-color: #0056b3;
+}
+
+/* Alerts */
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .auction-details-container {
+        flex-direction: column;
+    }
+    .custom-search {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

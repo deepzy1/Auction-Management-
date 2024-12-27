@@ -4,6 +4,12 @@
               name="Auction"
               sequence="1"/>
 
+    <menuitem id="menu_liveboard"
+              name="Liveboard"
+              parent="menu_auction_root"
+              action="action_new_auction_live"
+              sequence="2"/>
+
     <menuitem id="menu_property"
               name="Properties"
               parent="menu_auction_root"
@@ -11,13 +17,14 @@
 
     <menuitem id="menu_new_auction"
               name="Auction"
-              parent="menu_auction_root"/>
+              parent="menu_auction_root"
+              sequence="3"/>
 
     <menuitem id="menu_active_auction"
-              name="Active Auction"
+              name="Confirmed Auction"
               parent="menu_new_auction"
-              sequence="2"
-              action="action_new_auction"/>
+              action="action_new_auction"
+              sequence="3"/>
     
     <menuitem id="menu_completed_auction"
               name="Completed Auction"
@@ -48,10 +55,10 @@
               parent="menu_configuration"
               action="action_asset_category"/>
 
-    <menuitem id="menu_bid_rules"
-              name="Bid rules"
-              parent="menu_configuration"
-              action="action_bid_rules"/>
+<!--    <menuitem id="menu_bid_rules"-->
+<!--              name="Bid rules"-->
+<!--              parent="menu_configuration"-->
+<!--              action="action_bid_rules"/>-->
 
 
     

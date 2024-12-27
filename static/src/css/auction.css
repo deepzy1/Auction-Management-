@@ -6,6 +6,19 @@ body, html {
     color: #333;
 }
 
+
+.feature_section{
+    margin-top: -140px;
+    border-radius: 10px;
+}
+.container{
+    max-width: 1200px !important;
+    background-color: #fff !important;
+}
+h2{
+    line-height: 40px !important;
+}
+
 /* Navbar */
 .navbar {
     background-color: #000;
@@ -39,13 +52,9 @@ body, html {
 }
 
 .custom-search {
-    width: 220px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 0.5rem;
-    font-size: 1rem;
-    margin-top: 5%;
-    height: 30px;
+      width: 180px;
+    padding: 8px 4px;
+    margin-top: 14px;
 }
 
 .custom-search-btn {
@@ -75,13 +84,16 @@ body, html {
     border-radius: 50%;
 }
 
+.feature_container{
+    max-width: 1200px !important;
+}
+
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(to right, #003366, #0055aa);
+     background-image:url('../img/auction_bg.jpg');
     color: white;
-    padding: 30px 20px;
+    padding: 170px;
     text-align: center;
-
 }
 .nav-item2{
 margin-right: 250px;
@@ -96,9 +108,21 @@ margin-right: 250px;
 .hero-section p {
     font-size: 1.2rem;
 }
+.how_it_work{
+    box-shadow: 0 2px 4px #0000002b;
+    padding: 30px;
+    border-radius: 7px;
+    background: #fff;
 
+    &:hover{
+        background: skyblue;
+        color: #fff;
+        font-weight: bold;
+
+    }
+}
 .btn-primary {
-    background-color: #f8b400;
+    background-color: #fff;
     border: none;
     color: #002244;
     padding: 10px 20px;
@@ -107,6 +131,17 @@ margin-right: 250px;
     border-radius: 4px;
     margin-top: auto;
     height:30px;
+}
+
+.btn-primary:hover{
+    background: skyblue;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-family: serif;
+
 }
 
 /* Responsive Fixes */
@@ -128,3 +163,41 @@ margin-right: 250px;
         font-size: 2rem;
     }
 }
+
+.navbar-nav{
+    margin-left: 25%;
+    margin-right: -12%;
+
+}
+
+
+.navbar-navs{
+margin-right:-30px}
+
+button:not(.dark-theme) {
+    background-color: black;
+    color: white;
+    margin-top: 10px !important;
+
+}
+
+.register_btn{
+
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+
+}
+
+.btn{
+    width: 200px;
+    padding: 11px !important;
+    cursor: pointer;
+
+    &:hover{
+        background-color: skyblue;
+        color: #fff;
+    }
+}
+

@@ -1,198 +1,199 @@
-
-
-:root {
-    --primary-color: #6a0dad;
-    --secondary-color: #98fb98;
-    --accent-color: #ffc0cb;
-    --text-color: #333333;
-    --light-text-color: #ffffff;
-    --background-color: #f8f9fa;
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--text-color);
-    background-color: var(--background-color);
+/* Navbar */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 20px;
 }
 
-/* Header Styles */
-.main-header {
-    background-color: var(--primary-color);
-    padding: 15px 0;
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 16px;
 }
 
-.navbar-brand {
-    font-weight: 700;
-    color: var(--light-text-color) !important;
+.navbar a:hover {
+    color: #ff5722;
+}
+
+.navbar .navbar-brand {
     font-size: 24px;
+    font-weight: bold;
 }
 
-.nav-link {
-    color: var(--light-text-color) !important;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    margin: 0 10px;
-}
-
-.nav-link:hover {
-    color: var(--secondary-color) !important;
+.navbar .navbar-toggler {
+    border: 1px solid white;
 }
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: var(--light-text-color);
+    background: url('/auction_management/static/src/img/hero-background.jpg') no-repeat center center/cover;
+    color: white;
     padding: 100px 0;
+    text-align: center;
 }
 
 .hero-section h1 {
-    font-weight: 700;
-    margin-bottom: 20px;
-    font-size: 48px;
+    font-size: 50px;
+    font-weight: bold;
 }
 
 .hero-section p {
-    font-size: 20px;
-    margin-bottom: 30px;
+    font-size: 18px;
+    margin: 20px 0;
 }
 
-.btn-primary {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    color: var(--primary-color);
-    font-weight: 600;
-    transition: all 0.3s ease;
+.hero-section .btn-primary {
+    background-color: #ff5722;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
-.btn-primary:hover {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    color: var(--primary-color);
+.hero-section .btn-primary:hover {
+    background-color: #e64a19;
 }
 
-.btn-outline-light:hover {
-    background-color: var(--light-text-color);
-    color: var(--primary-color);
+/* Featured Auctions Section */
+.feature_section {
+    background-color: #f9f9f9;
+    padding: 50px 0;
 }
 
-/* Featured Auctions */
-.featured-auctions {
-    background-color: var(--background-color);
-    padding: 80px 0;
+.feature_container {
+    width: 85%;
+    margin: 0 auto;
 }
 
-.featured-auctions h2 {
-    color: var(--primary-color);
-    font-weight: 700;
-    font-size: 36px;
-    margin-bottom: 40px;
+.auction-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .auction-card {
-    background-color: var(--light-text-color);
+    background-color: white;
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    width: 22%;
     transition: transform 0.3s ease;
 }
 
 .auction-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
 }
 
-.auction-image {
+.auction-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.auction-card-header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
 }
 
 .auction-details {
     padding: 20px;
 }
 
-.auction-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--primary-color);
+.auction-details p {
+    font-size: 16px;
     margin-bottom: 10px;
 }
 
-.auction-price {
-    font-size: 16px;
-    color: var(--text-color);
-    margin-bottom: 15px;
+.auction-details strong {
+    color: #ff5722;
 }
 
-/* Footer Styles */
-.main-footer {
-    background-color: var(--primary-color);
-    color: var(--light-text-color);
-    padding: 60px 0 30px;
-}
-
-.main-footer h5 {
-    color: var(--secondary-color);
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.main-footer a {
-    color: var(--light-text-color);
-    transition: color 0.3s ease;
-}
-
-.main-footer a:hover {
-    color: var(--secondary-color);
+.auction-card .btn {
+    background-color: #ff5722;
+    color: white;
+    padding: 10px 20px;
     text-decoration: none;
+    border-radius: 5px;
+    display: block;
+    margin-top: 20px;
+    text-align: center;
 }
 
-.social-icons a {
-    font-size: 1.5rem;
-    margin-right: 15px;
-    color: var(--light-text-color);
+.auction-card .btn:hover {
+    background-color: #e64a19;
 }
 
-.social-icons a:hover {
-    color: var(--secondary-color);
+/* How It Works Section */
+.how_it_work {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.how_it_work h4 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
 }
 
-@keyframes slideInUp {
-    from { transform: translateY(50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+.how_it_work p {
+    font-size: 16px;
+    color: #555;
 }
 
-.animated {
-    animation-duration: 1s;
-    animation-fill-mode: both;
+/* Footer Section */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-.fadeIn { animation-name: fadeIn; }
-.slideInUp { animation-name: slideInUp; }
+footer p {
+    font-size: 14px;
+}
 
-.delay-1s { animation-delay: 0.5s; }
-.delay-2s { animation-delay: 1s; }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero-section {
-        padding: 60px 0;
-    }
-
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
     .hero-section h1 {
-        font-size: 36px;
+        font-size: 35px;
     }
 
-    .hero-section p {
-        font-size: 18px;
+    .auction-container {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .featured-auctions h2 {
-        font-size: 28px;
+    .auction-card {
+        width: 80%;
+    }
+
+    .how_it_work {
+        margin-bottom: 20px;
+    }
+
+    .how_it_work h4 {
+        font-size: 20px;
+    }
+
+    .how_it_work p {
+        font-size: 14px;
     }
 }

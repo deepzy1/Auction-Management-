@@ -1,0 +1,211 @@
+<odoo>
+    <template id="auction_search_ui" name="Custom Auction Search UI">
+        <t t-call-assets="web.assets_frontend"/>
+
+        <!-- Link custom CSS -->
+        <!-- Link custom CSS -->
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"/>
+        <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/filter.css"/>
+        <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/auction.css"/>
+        <script type="text/javascript" src="/auction_management/static/src/js/round.js"></script>
+         <!-- Navbar -->
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light1">
+            <a class="navbar-brand" href="/home">Auction System</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auction/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auction/list">Auctions</a>
+                    </li>
+                    <li class="nav-item2">
+                        <!-- <a class="nav-link" href="/properties">Properties</a> -->
+                    </li>
+                </ul>
+
+                <!-- Search Bar -->
+                <!-- Search Bar -->
+                <form class="form-inline d-flex align-items-center" method="GET" action="/auction/filters">
+                    <input type="text" name="query" placeholder="Search for Auction"
+                           class="form-control custom-search mr-2"/>
+                    <button type="submit" class="btn btn-primary custom-search-btn">
+                        <i class="bi bi-search"></i> <!-- Bootstrap Search Icon -->
+                    </button>
+                </form>
+
+
+                <!-- Profile Dropdown -->
+                <ul class="navbar-navs ml-3">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center"
+                           href="#"
+                           id="profileDropdown"
+                           role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            <img src="/auction_management/static/src/img/user.png"
+                                 alt="Profile"
+                                 class="rounded-circle profile-image"/>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                            <t t-if="request.session.get('auction_user_id')">
+                                <!-- If the user is logged in -->
+                                <!-- <a class="dropdown-item" href="/profile1">Profile</a> -->
+                                <!-- <div class="dropdown-divider"></div> -->
+                                <a class="dropdown-item" href="/auction/logout">Log out</a>
+                            </t>
+                            <t t-else="">
+                                <!-- If the user is not logged in -->
+                                <a class="dropdown-item" href="/auction/login">Login</a>
+                            </t>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid  mt-3 auction-search-container">
+            <!-- Search Filters -->
+            <h3 class="search-header">Search Parameters</h3>
+
+            <!-- Search Form -->
+            <form action="/auction/filters" method="GET" class="search-form">
+                <div class="row">
+                    <!-- State -->
+                    <div class="col-md-3 search-field">
+                        <label for="state">State:</label>
+                        <select name="state" id="state" class="search-input">
+                            <option value="">All States</option>
+                            <t t-foreach="states" t-as="state">
+                                <option t-att-value="state" t-att-selected="state == selected_state">
+                                    <t t-esc="state"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <!-- District -->
+                    <div class="col-md-3 search-field">
+                        <label for="district">District:</label>
+                        <select name="district" id="district" class="search-input">
+                            <option value="">All Districts</option>
+                            <t t-foreach="districts" t-as="district">
+                                <option t-att-value="district" t-att-selected="district == selected_district">
+                                    <t t-esc="district"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <!-- City -->
+                    <div class="col-md-3 search-field">
+                        <label for="city">City:</label>
+                        <select name="city" id="city" class="search-input">
+                            <option value="">All Cities</option>
+                            <t t-foreach="cities" t-as="city">
+                                <option t-att-value="city" t-att-selected="city == selected_city">
+                                    <t t-esc="city"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                    <!-- Type -->
+                    <div class="col-md-3 search-field">
+                        <label for="type">Type:</label>
+                        <select name="type" id="type" class="search-input">
+                            <option value="">All Types</option>
+                            <t t-foreach="property_types" t-as="type">
+                                <option t-att-value="type" t-att-selected="type == selected_type">
+                                    <t t-esc="type"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <!-- Price Range -->
+                    <div class="col-md-6 search-price-range">
+                        <label for="price_range">Price Range:</label>
+                        <input type="number" name="min_price" t-att-value="selected_min_price" class="search-input"
+                               placeholder="Min Price" id="min_price"/>
+                        to
+                        <input type="number" name="max_price" t-att-value="selected_max_price" class="search-input"
+                               placeholder="Max Price" id="max_price"/>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="col-md-3 search-buttons d-flex">
+                        <button type="submit" class=" search-button">Search</button>
+                       <button class="clear-button">
+                        <a href="/auction/filters" >Clear</a>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Results Table -->
+            <div class="table-container mt-4" t-if="search_results">
+                <h4 class="results-header">Search Results</h4>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Property Name</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>District</th>
+                            <th>State</th>
+                            <th>Price</th>
+                            <th>Type</th>
+                            <th>Action</th> <!-- For linking to auction -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="search_results" t-as="result">
+                            <tr>
+                                <td>
+                                    <t t-esc="result.auction_name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="result.auction_property.address"/>
+                                </td>
+                                <td>
+                                    <t t-esc="result.auction_property.city"/>
+                                </td>
+                                <td>
+                                    <t t-esc="result.auction_property.district"/>
+                                </td>
+                                <td>
+                                    <t t-esc="result.auction_property.state"/>
+                                </td>
+                                <td>
+                                    <t t-esc="result.auction_property.price"/>
+                                </td>
+                                <td>
+                                    <t t-esc="result.auction_property.type.name"/>
+                                </td>
+                                <td>
+                                    <a t-att-href="'/auction/view/' + str(result.id)" class="btn btn-link">View
+                                        Auction
+                                    </a>
+                                </td>
+
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+</odoo>

@@ -2,8 +2,8 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_asset_category,access.asset.category,model_asset_category,base.group_user,1,1,1,1
 access_new_property,access.new.property,model_new_property,base.group_user,1,1,1,1
 access_property_image,access.property.image,model_property_image,base.group_user,1,1,1,1
-access_auction_user,access_auction_user,model_auction_user,base.group_user,1,0,0,0
+access_auction_user,access_auction_user,model_auction_user,base.group_user,1,0,0,1
 access_new_auction,access.new.auction,model_new_auction,base.group_user,1,1,1,1
 access_bid_rules,access.bid.rules,model_bid_rules,base.group_user,1,1,1,1
-access_bid_logs,access.bid.logs,model_bid_logs,base.group_user,1,1,1,1
+access_bid_logs,access.bid.logs,model_bid_logs,base.group_user,1,0,0,0
 

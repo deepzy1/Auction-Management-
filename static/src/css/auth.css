@@ -6,6 +6,7 @@ body {
 
 .container {
     margin-top: 4rem;
+
 }
 
 .card {
@@ -49,8 +50,12 @@ body {
 
 .text-center a {
     color: #007bff;
+    padding: 4px;
 }
 
 .text-center a:hover {
     text-decoration: underline;
+}
+.text-center{
+    padding: 9px;
 }

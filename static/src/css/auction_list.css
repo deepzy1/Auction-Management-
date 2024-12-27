@@ -1,0 +1,133 @@
+/* Auction List Styles */
+.auction-container {
+    margin-top: 30px;
+}
+
+.home-container{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* Card Styling */
+.auction-card {
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: none; /* Removed shadow for static design */
+    overflow: hidden;
+    min-height: 500px !important;
+}
+
+.auction-card-header {
+    background-color: #fff;
+    color: #333; /* Changed from white for visibility */
+    padding: 10px;
+    text-align: center;
+}
+
+.auction-card-header h4 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Image Container */
+.image-container {
+    text-align: center;
+    padding: 10px;
+  
+}
+
+.image-container img {
+    max-height: 200px !important;
+    max-width: 100%;
+    object-fit: cover; 
+    border-radius: 5px;
+}
+
+/* Card Body */
+.card-body {
+    padding: 15px;
+}
+
+.auction-details p {
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+/* Buttons */
+/* .bid-button,
+.view-details-button {
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+} */
+
+bid-button{
+    width: 50%;
+    background-color: skyblue;
+    padding: 10px;
+}
+
+.view_bid{
+    padding: 10px;
+    background: #fff;
+    border: 1px solid grey;
+    text-align: center;
+    color: #fff !important;
+    &:hover{
+        background-color: skyblue;
+    }
+}
+
+.view_bid a{
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none !important;
+
+
+   
+}
+/* Buttons Static (No Hover Effects) */
+.bid-button:hover,
+.view-details-button:hover {
+    background-color: #007bff; /* Static background color */
+    color: #fff; /* Static text color */
+}
+
+/* Media Queries for Alignment */
+@media (min-width: 768px) {
+    .row > .col-md-4 {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Card Flexbox for Layout */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 500px !important;
+}
+
+/* Removed all animations */
+* {
+    animation: none !important; /* Disable animations globally */
+    transition: none !important; /* Disable transitions globally */
+}
+
+.bid_btns{
+    display: flex;
+    justify-content: space-around;
+}
+
+

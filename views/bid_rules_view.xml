@@ -15,6 +15,7 @@
 <!--                        <field name="minimum_increment"/>-->
                     </group>
                 </sheet>
+                 <chatter/>
             </form>
         </field>
     </record>

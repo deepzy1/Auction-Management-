@@ -2,10 +2,10 @@
 <odoo>
 
         <!-- Active Auctions -->
-    <record id="action_new_auction" model="ir.actions.act_window">
-        <field name="name">New Auction</field>
+    <record id="action_new_auction_live" model="ir.actions.act_window">
+        <field name="name">Active Auctions</field>
         <field name="res_model">new.auction</field>
-        <field name="domain">[('status', '!=', 'closed'), ('status', '!=', 'finished')]</field>
+        <field name="domain">[('status', '!=', 'draft'),('status', '!=', 'confirmed'), ('status', '!=', 'closed'), ('status', '!=', 'finished')]</field>
         <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -14,9 +14,22 @@
         </field>
     </record>
 
+    <!-- Confirmed Auctions -->
+    <record id="action_new_auction" model="ir.actions.act_window">
+        <field name="name">Draft/Confirmed Auctions</field>
+        <field name="res_model">new.auction</field>
+        <field name="domain">[('status', '!=', 'running'), ('status', '!=', 'closed'), ('status', '!=', 'finished')]</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                    Empty
+                </p>
+        </field>
+    </record>
+
         <!-- Completed Auctions -->
     <record id="action_new_auction_completed_auction" model="ir.actions.act_window">
-            <field name="name">Completed Auction</field>
+            <field name="name">Completed Auctions</field>
             <field name="res_model">new.auction</field>
             <field name="domain">['|',('status', '=', 'closed'), ('status', '=', 'finished')]</field>
             <field name="view_mode">list,form</field>
@@ -34,6 +47,7 @@
             <list string="Auctions">
                 <field name="auction_name"/>
                 <field name="initial_price"/>
+                <field name="highest_bid"/>
                 <field name="status"/>
 
             </list>
@@ -76,7 +90,7 @@
                             <group>
                             <field name="highest_bid"/>
                             </group>
-                            <field name="bid_ids">
+                            <field name="bid_ids" readonly="1">
                                     <list>
                                         <field name="user_id"/>
                                         <field name="auction_id"/>
@@ -88,7 +102,12 @@
 
                         </page>
                     </notebook>
+
                 </sheet>
+                <shett>
+                    <chatter/>
+                </shett>
+
             </form>
         </field>
         <!-- <field name="refresh">1000</field> Refresh seconds -->

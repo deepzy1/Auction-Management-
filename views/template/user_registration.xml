@@ -3,15 +3,16 @@
     <template id="register_template" name="Register">
         <t t-call-assets="web.assets_frontend"/>
         <!-- Link Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/auth.css"/>
+        <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/auction.css"/>
+
         <t t-set="title">Register - Auction Management System</t>
-        <div class="container mt-5">
+        <div class="mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card shadow-lg border-0 rounded-3">
                         <div class="card-body p-5">
                             <h2 class="text-center mb-4 fw-bold">Create an Account</h2>
-                            <form action="/auction/register/submit" method="post">
+                            <form action="/auction/register/submit" method="post" id="registerForm">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="name" class="form-label">Full Name</label>
@@ -36,12 +37,9 @@
                                     <label for="phone" class="form-label">Phone</label>
                                     <input type="tel" class="form-control" name="phone" id="phone" placeholder="Enter your phone number"/>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="address" class="form-label">Address</label>
-                                    <textarea class="form-control" name="address" id="address" rows="3" placeholder="Enter your address"></textarea>
-                                </div>
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+
+                                <div class="col-md-12 d-flex register_btn">
+                                    <button type="submit" class="btn" id="registerButton">Register</button>
                                 </div>
                             </form>
                             <p class="mt-4 text-center">

@@ -1,0 +1,176 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.search-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Search Form */
+.search-form {
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.search-field label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.search-price-range input {
+    width: calc(50% - 10px);
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.search-buttons {
+    text-align: right;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Table Styles */
+.table-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.results-header {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.results-table thead tr {
+    background-color: #007bff;
+    color: #fff;
+    text-align: left;
+}
+
+.results-table th, .results-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.results-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.results-table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.results-table td a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.results-table td a:hover {
+    text-decoration: underline;
+}
+
+/* Profile Dropdown */
+.profile-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+}
+
+.navbar .dropdown-menu {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.dropdown-item {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-form .row {
+        flex-direction: column;
+    }
+
+    .search-field {
+        margin-bottom: 15px;
+    }
+
+    .search-price-range input {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .search-buttons {
+        text-align: center;
+    }
+
+    .search-buttons .search-button {
+        margin: 5px;
+    }
+}

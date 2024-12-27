@@ -22,6 +22,7 @@
                 <field name="price"/>
                 <field name="state"/>
                 <field name="address"/>
+
             </list>
         </field>
     </record>
@@ -36,33 +37,54 @@
                     <group>
                         <field name="name"/>
                         <field name="type"/>
+                        <field name="loan_amount"/>
+                        <field name="penalty"/>
+                    </group>
+                    <group>
+                        <field name="bidding_fees"/>
                         <field name="price"/>
+                        <field name="document"/>
                     </group>
-                    <group>   
-                        <field name="city"/>
-                        <field name="pincode"/>
-                        <field name="district"/>
-                        <field name="state"/>
-                    </group>
-                    <group>
-                        <field name="document" required="0"/>
-                    </group>
-                    <group>
-                        <field name="image_ids">
-                            <list editable="bottom">
-                                <field name="image" widget='image' class="oe_avatar"/>
-                            </list>    
-                        </field>
-                    </group>
+                        <group string="interest Rate">
+                            <div class="o_row">
+                                <label for="interest_rate" string="Interest"/>
+                                <field name="interest_rate" widget="percentage"/>
+                                <label for="year" string="Years"/>
+                                <field name="year"/>
+                                <label for="month" string="Months"/>
+                                <field name="month"/>
+                            </div>
+                            <field name="total_interest"/>
+                        </group>
                 </group>
                 <notebook>
-                    <page string="Address">
+                    <page string="Description">
+                        <field name="description" type="html" placeholder="Property description..."/>
+                    </page>
+                    <page string="Note">
+                        <field name="note" type="html" placeholder="Add Note"/>
+                    </page>
+                    <page string="Images">
                         <group>
-                            <field name="address"/>
+                            <field name="image_ids" string="">
+                                <list editable="bottom">
+                                    <field name="image" widget='image' class="oe_avatar" string=""/>
+                                </list>
+                            </field>
                         </group>
+                    </page>
+                    <page string="Address">
+                        <div class="o_address_format">
+                            <field name="address" placeholder="Add Address" class="o_address_street"/>
+                            <field name="city" placeholder="City" class="o_address_city"/>
+                            <field name="district" placeholder="District" class="o_address_district"/>
+                            <field name="pincode" placeholder="Pincode" class="o_address_pincode"/>
+                            <field name="state" placeholder="State" class="o_address_state"/>
+                        </div>
                     </page>
                 </notebook>
                 </sheet>
+                 <chatter/>
             </form>
         </field>
     </record>

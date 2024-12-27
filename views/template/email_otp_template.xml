@@ -1,0 +1,12 @@
+<odoo>
+    <template id="email_otp_template">
+    <t t-name="auction_management.email_otp_template">
+        <div>
+            <p>Hello,</p>
+            <p>Your OTP for Auction Registration is: <strong><t t-esc="otp"/></strong></p>
+            <p>Thank you for registering.</p>
+        </div>
+    </t>
+</template>
+
+</odoo>

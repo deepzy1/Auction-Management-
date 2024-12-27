@@ -1,0 +1,43 @@
+<odoo>
+    <template id="finished_auction_list_template" name="Completed Auctions">
+
+        <!-- Link to custom CSS -->
+        <link rel="stylesheet" type="text/css" href="/auction_management/static/src/css/completed.css"/>
+
+        
+            <h1 class="auction-title">Finished Auctions</h1>
+            
+            <t t-if="finished_auctions">
+                <div class="auction-list">
+                    <t t-foreach="finished_auctions" t-as="auction">
+                        <div class="auction-item">
+                            <h3 class="auction-name"><t t-esc="auction.auction_name"/></h3>
+                            <div class="image-container img">
+                                <t t-if="auction.auction_property.image_ids and auction.auction_property.image_ids[0].image">
+                                    <img t-att-src="'/web/image/property.image/' + str(auction.auction_property.image_ids[0].id) + '/image'"
+                                         alt="Property Image"/>
+                                </t>
+                                <t t-else="">
+                                    <img src="/auction_management/static/src/img/hammer.jpg"
+                                         alt="Default Property Image"/>
+                                </t>
+                            </div>
+                            <p class="auction-status">Status: <t t-esc="auction.status"/></p>
+                            <p class="auction-final-bid">Final Bid: <t t-esc="auction.highest_bid"/></p>
+                            <p class="auction-end-date">End Date: <t t-esc="auction.end_date"/></p>
+                             <button class="view_bid"> <a t-att-href="'/auction/view/' + str(auction.id)" class="">
+                                        View Details
+                                    </a>
+                            </button>
+                        </div>
+                    </t>
+                </div>
+            </t>
+
+            <t t-if="not finished_auctions">
+                <p class="no-auctions">No finished auctions available.</p>
+            </t>
+        
+
+    </template>
+</odoo>

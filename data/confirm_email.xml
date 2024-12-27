@@ -1,0 +1,17 @@
+<odoo>
+    <record id="email_template_bid_confirmation" model="mail.template">
+        <field name="name">Bid Confirmation Email</field>
+        <field name="model_id" ref="auction_management.model_bid_logs"/>
+        <field name="subject">Bid Confirmation for Auction {{object.auction_id.auction_name}}</field>
+        <field name="email_from">{{object.email}}</field>
+        <!-- <field name="email_to">{{object.user_id.email}}</field> -->
+        <field name="body_html">
+            <![CDATA[
+                <p>Hello {{object.user_id.name}},</p>
+                <p>Thank you for your bid on the auction <strong>${object.auction_id.name}</strong>.</p>
+                <p>Your bid amount: <strong>${object.bid_amount}</strong></p>
+                <p>Best of luck!</p>
+            ]]>
+        </field>
+    </record>
+</odoo>
